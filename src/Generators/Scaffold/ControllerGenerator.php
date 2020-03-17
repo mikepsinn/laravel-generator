@@ -85,9 +85,13 @@ class ControllerGenerator extends BaseGenerator
 
         $templateData = fill_template($this->commandData->dynamicVars, $templateData);
 
+        $columns = $this->generateDataTableColumns();
+        if(!is_array($columns)){
+            $columns = $this->generateDataTableColumns();
+        }
         $templateData = str_replace(
             '$DATATABLE_COLUMNS$',
-            implode(','.infy_nl_tab(1, 3), $this->generateDataTableColumns()),
+            implode(','.infy_nl_tab(1, 3), $columns),
             $templateData
         );
 
