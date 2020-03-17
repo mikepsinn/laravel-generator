@@ -57,6 +57,9 @@ class TableFieldsGenerator
     /** @var array */
     public $ignoredFields;
 
+    /** @var Table[] */
+    public static $tableDetails = [];
+
     public function __construct($tableName, $ignoredFields, $connection = '')
     {
         $this->tableName = $tableName;
@@ -187,13 +190,14 @@ class TableFieldsGenerator
      */
     public function listTableDetails($tableName)
     {
-        if(isset(self::$tableDetails[$table])){
-            return self::$tableDetails[$table];
+        $tables = self::$tableDetails;
+        if(isset($tables[$tableName])){
+            return $tables[$tableName];
         }
 
         $table = $this->schemaManager->listTableDetails($tableName);
 
-        return self::$tableDetails[$table] = $table;
+        return self::$tableDetails[$tableName] = $table;
     }
 
     /**
