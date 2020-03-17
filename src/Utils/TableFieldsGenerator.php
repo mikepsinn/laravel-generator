@@ -5,6 +5,7 @@ namespace InfyOm\Generator\Utils;
 use DB;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Column;
+use Doctrine\DBAL\Schema\Table;
 use Illuminate\Support\Str;
 use InfyOm\Generator\Common\GeneratorField;
 use InfyOm\Generator\Common\GeneratorFieldRelation;
@@ -172,9 +173,27 @@ class TableFieldsGenerator
      */
     public function getPrimaryKeyOfTable($tableName)
     {
-        $column = $this->schemaManager->listTableDetails($tableName)->getPrimaryKey();
+        $column = $this->listTableDetails($tableName)->getPrimaryKey();
 
         return $column ? $column->getColumns()[0] : '';
+    }
+
+    /**
+     * Cache tables because this can be slow if generating programmaticaly for many tables
+     *
+     * @param string $tableName
+     *
+     * @return Table
+     */
+    public function listTableDetails($tableName)
+    {
+        if(isset(self::$tableDetails[$table])){
+            return self::$tableDetails[$table];
+        }
+
+        $table = $this->schemaManager->listTableDetails($tableName);
+
+        return self::$tableDetails[$table] = $table;
     }
 
     /**
