@@ -5,9 +5,12 @@ namespace $NAMESPACE_CONTROLLER$;
 use $NAMESPACE_REQUEST$\Create$MODEL_NAME$Request;
 use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
 use $NAMESPACE_REPOSITORY$\$MODEL_NAME$Repository;
-use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 use Response;
 
 class $MODEL_NAME$Controller extends AppBaseController
@@ -25,7 +28,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @param Request $request
      *
-     * @return Response
+     * @return Response|Factory|RedirectResponse|Redirector|View
      */
     public function index(Request $request)
     {
@@ -68,7 +71,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @param int $id
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|Response
+     * @return Factory|RedirectResponse|Redirector|View|Response
      */
     public function show($id)
     {
@@ -88,7 +91,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @param int $id
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|Response
+     * @return Factory|RedirectResponse|Redirector|View|Response
      */
     public function edit($id)
     {
