@@ -126,10 +126,18 @@ class ControllerGenerator extends BaseGenerator
                 $field
             );
 
-            if (stripos($field->name, 'url') !== false) {
+            if (stripos($field->name, 'email') !== false) {
                 $dataTableColumns[] =  "'".$field->name."' => [
                 'title'      => '".Str::title(str_replace("_", ' ', $field->name))."',
-                'render'     => '\"<a href=\\\"\"+data+\"\\\">+data+</a>\"',
+                'render'     => '\"<a href=\\\"mailto:\"+data+\"\\\">\"+data+\"</a>\"',
+                'data'       => '".$field->name."',
+                'name'       => '".$field->name."',
+                'searchable' => true
+            ]";
+            } elseif (stripos($field->name, 'url') !== false) {
+                $dataTableColumns[] =  "'".$field->name."' => [
+                'title'      => '".Str::title(str_replace("_", ' ', $field->name))."',
+                'render'     => '\"<a href=\\\"\"+data+\"\\\">\"+data+\"</a>\"',
                 'data'       => '".$field->name."',
                 'name'       => '".$field->name."',
                 'searchable' => true
