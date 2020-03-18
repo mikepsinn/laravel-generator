@@ -6,6 +6,7 @@ use $NAMESPACE_DATATABLES$\$MODEL_NAME$DataTable;
 use $NAMESPACE_REQUEST$;
 use $NAMESPACE_REQUEST$\Create$MODEL_NAME$Request;
 use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
+use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
 use $NAMESPACE_MODEL$\$MODEL_NAME$;
 use Flash;
 use Illuminate\Contracts\View\Factory;
