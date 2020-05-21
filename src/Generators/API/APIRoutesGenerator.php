@@ -41,7 +41,7 @@ class APIRoutesGenerator extends BaseGenerator
         $this->routeContents .= "\n\n".$this->routesTemplate;
         $existingRouteContents = file_get_contents($this->path);
         if (Str::contains($existingRouteContents, "Route::resource('".$this->commandData->config->mSnakePlural."',")) {
-            $this->commandData->commandObj->info('Menu '.$this->commandData->config->mPlural.'is already exists, Skipping Adjustment.');
+            $this->commandData->commandObj->info('APIRoute '.$this->commandData->config->mPlural.' already exists, Skipping Adjustment.');
 
             return;
         }
