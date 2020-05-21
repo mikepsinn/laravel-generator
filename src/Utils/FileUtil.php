@@ -12,7 +12,11 @@ class FileUtil
 
         $path = $path.$fileName;
 
-        file_put_contents($path, $contents);
+        $result = file_put_contents($path, $contents);
+        if(!$result){
+            throw new \LogicException("Failed to write to $path $fileName");
+        }
+        return $result;
     }
 
     public static function createDirectoryIfNotExist($path, $replace = false)
